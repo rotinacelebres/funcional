@@ -203,35 +203,36 @@
     <!-- Wrapper -->
     <div class="relative max-w-4xl mx-auto">
 
-      <!-- Slides (mantenha 1 blockquote por .testimonial-slide) -->
+      <!-- Slides -->
       <div class="testimonial-slide active">
-        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
-          <p class="italic mb-3">“Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”</p>
+        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
+          <p class="italic text-gray-900 mb-3">“Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”</p>
           <cite class="text-gray-700 font-medium">Carlos P. • Estudante</cite>
         </blockquote>
       </div>
 
-      <div class="testimonial-slide">
-        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
-          <p class="italic mb-3">“Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”</p>
+      <div class="testimonial-slide hidden">
+        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
+          <p class="italic text-gray-900 mb-3">“Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”</p>
           <cite class="text-gray-700 font-medium">Fernanda L. • Designer</cite>
         </blockquote>
       </div>
 
-      <div class="testimonial-slide">
-        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
-          <p class="italic mb-3">“Simples e aplicável. Em 1 mês eu tava outro.”</p>
+      <div class="testimonial-slide hidden">
+        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
+          <p class="italic text-gray-900 mb-3">“Simples e aplicável. Em 1 mês eu tava outro.”</p>
           <cite class="text-gray-700 font-medium">Rafael S. • Empreendedor</cite>
         </blockquote>
       </div>
 
       <!-- Botões -->
       <button id="t-prev"
-        class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition">
+        class="hidden md:flex absolute -left-8 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition z-10">
         &#10094;
       </button>
+
       <button id="t-next"
-        class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition">
+        class="hidden md:flex absolute -right-8 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition z-10">
         &#10095;
       </button>
     </div>
@@ -245,20 +246,44 @@
   </div>
 </section>
 
+<!-- CSS extra pra corrigir cores e transições -->
+<style>
+  #testimonials .testimonial-slide {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+  }
+
+  #testimonials .testimonial-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  #testimonials .testimonial-slide p {
+    color: #111827 !important; /* gray-900 */
+  }
+
+  #testimonials .testimonial-slide cite {
+    color: #374151 !important; /* gray-700 */
+  }
+</style>
+
+<!-- Script do carrossel -->
 <script>
   (function () {
     const slides = Array.from(document.querySelectorAll('#testimonials .testimonial-slide'));
     const dots = Array.from(document.querySelectorAll('#t-dots .testimonial-dot'));
     const prev = document.getElementById('t-prev');
     const next = document.getElementById('t-next');
-    const wrapper = document.querySelector('#testimonials .relative');
-    let i = 0, timer;
+    let i = 0;
+    let timer;
 
     function show(index) {
       i = (index + slides.length) % slides.length;
       slides.forEach((s, k) => s.classList.toggle('active', k === i));
       dots.forEach((d, k) => {
-        d.classList.toggle('active', k === i);
         d.classList.toggle('bg-yellow-500', k === i);
         d.classList.toggle('bg-gray-400', k !== i);
       });
@@ -266,18 +291,21 @@
 
     function nextSlide() { show(i + 1); }
     function prevSlide() { show(i - 1); }
-    function auto() { timer = setInterval(nextSlide, 5000); }
 
     next.addEventListener('click', nextSlide);
     prev.addEventListener('click', prevSlide);
     dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
 
-    wrapper.addEventListener('mouseenter', () => clearInterval(timer));
-    wrapper.addEventListener('mouseleave', () => auto());
+    function auto() {
+      timer = setInterval(() => show(i + 1), 5000);
+    }
+
+    document.querySelector('#testimonials').addEventListener('mouseenter', () => clearInterval(timer));
+    document.querySelector('#testimonials').addEventListener('mouseleave', auto);
 
     show(0);
     auto();
-  })();
+  })();
 </script>
 
   <!-- PRICING -->
@@ -397,6 +425,7 @@
 </body>
 
 </html>
+
 
 
 
