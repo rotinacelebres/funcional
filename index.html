@@ -195,117 +195,152 @@
   </section>
 
  
-<!-- Depoimentos / Resultados que inspiram -->
-<section id="testimonials" class="py-20 section-alt">
-  <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-8">Resultados que inspiram</h2>
+<!-- ===================== -->
+<!-- RESULTADOS QUE INSPIRAM -->
+<!-- ===================== -->
+<section id="testimonials" class="py-16">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-8">
+      Resultados que inspiram
+    </h2>
 
-    <!-- Wrapper -->
-    <div class="relative max-w-4xl mx-auto">
+    <!-- Swiper container -->
+    <div class="swiper" id="testi-swiper">
+      <div class="swiper-wrapper">
 
-      <!-- Slides -->
-      <div class="testimonial-slide active">
-        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
-          <p class="italic text-gray-900 mb-3">“Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”</p>
-          <cite class="text-gray-700 font-medium">Carlos P. • Estudante</cite>
-        </blockquote>
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <figure class="t-card">
+            <blockquote class="t-quote">
+              “Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”
+            </blockquote>
+            <figcaption class="t-author">Carlos P. • Estudante</figcaption>
+          </figure>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <figure class="t-card">
+            <blockquote class="t-quote">
+              “Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”
+            </blockquote>
+            <figcaption class="t-author">Fernanda L. • Designer</figcaption>
+          </figure>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <figure class="t-card">
+            <blockquote class="t-quote">
+              “Simples e aplicável. Em 1 mês eu tava outro.”
+            </blockquote>
+            <figcaption class="t-author">Rafael S. • Empreendedor</figcaption>
+          </figure>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <figure class="t-card">
+            <blockquote class="t-quote">
+              “O planner + checklist me deram clareza. Parei de adiar o que importava.”
+            </blockquote>
+            <figcaption class="t-author">Juliana C. • Gestora</figcaption>
+          </figure>
+        </div>
+
       </div>
 
-      <div class="testimonial-slide hidden">
-        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
-          <p class="italic text-gray-900 mb-3">“Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”</p>
-          <cite class="text-gray-700 font-medium">Fernanda L. • Designer</cite>
-        </blockquote>
-      </div>
-
-      <div class="testimonial-slide hidden">
-        <blockquote class="bg-white p-8 rounded-2xl shadow text-center transition-opacity duration-700 ease-in-out">
-          <p class="italic text-gray-900 mb-3">“Simples e aplicável. Em 1 mês eu tava outro.”</p>
-          <cite class="text-gray-700 font-medium">Rafael S. • Empreendedor</cite>
-        </blockquote>
-      </div>
-
-      <!-- Botões -->
-      <button id="t-prev"
-        class="hidden md:flex absolute -left-8 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition z-10">
-        &#10094;
-      </button>
-
-      <button id="t-next"
-        class="hidden md:flex absolute -right-8 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition z-10">
-        &#10095;
-      </button>
-    </div>
-
-    <!-- Dots -->
-    <div id="t-dots" class="flex justify-center mt-5 space-x-2">
-      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
-      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
-      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+      <!-- Controles -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </section>
 
-<!-- CSS extra pra corrigir cores e transições -->
+<!-- ===================== -->
+<!-- CSS + JS integrados -->
+<!-- ===================== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <style>
-  #testimonials .testimonial-slide {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
+  /* ---------- VISUAL ---------- */
+  #testimonials .swiper {
+    padding: 0 2rem 2.25rem;
   }
 
-  #testimonials .testimonial-slide.active {
+  #testimonials .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  #testimonials .t-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 1.5rem 1.75rem;
+    border-radius: 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.03) inset;
+  }
+
+  #testimonials .t-quote {
+    color: #f3f4f6;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  #testimonials .t-author {
+    color: #d1d5db;
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  #testimonials .swiper-button-prev,
+  #testimonials .swiper-button-next {
+    color: #facc15;
+    width: 36px;
+    height: 36px;
+  }
+
+  #testimonials .swiper-button-prev:after,
+  #testimonials .swiper-button-next:after {
+    font-size: 18px;
+  }
+
+  #testimonials .swiper-pagination-bullet {
+    background: #9ca3af;
+    opacity: 0.6;
+  }
+
+  #testimonials .swiper-pagination-bullet-active {
+    background: #facc15;
     opacity: 1;
-    pointer-events: auto;
-    position: relative;
-  }
-
-  #testimonials .testimonial-slide p {
-    color: #111827 !important; /* gray-900 */
-  }
-
-  #testimonials .testimonial-slide cite {
-    color: #374151 !important; /* gray-700 */
   }
 </style>
 
-<!-- Script do carrossel -->
 <script>
-  (function () {
-    const slides = Array.from(document.querySelectorAll('#testimonials .testimonial-slide'));
-    const dots = Array.from(document.querySelectorAll('#t-dots .testimonial-dot'));
-    const prev = document.getElementById('t-prev');
-    const next = document.getElementById('t-next');
-    let i = 0;
-    let timer;
-
-    function show(index) {
-      i = (index + slides.length) % slides.length;
-      slides.forEach((s, k) => s.classList.toggle('active', k === i));
-      dots.forEach((d, k) => {
-        d.classList.toggle('bg-yellow-500', k === i);
-        d.classList.toggle('bg-gray-400', k !== i);
-      });
+  const testiSwiper = new Swiper('#testi-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    loop: true,
+    autoHeight: true,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      1024: { slidesPerView: 1 }
     }
-
-    function nextSlide() { show(i + 1); }
-    function prevSlide() { show(i - 1); }
-
-    next.addEventListener('click', nextSlide);
-    prev.addEventListener('click', prevSlide);
-    dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
-
-    function auto() {
-      timer = setInterval(() => show(i + 1), 5000);
-    }
-
-    document.querySelector('#testimonials').addEventListener('mouseenter', () => clearInterval(timer));
-    document.querySelector('#testimonials').addEventListener('mouseleave', auto);
-
-    show(0);
-    auto();
-  })();
+  });
 </script>
 
   <!-- PRICING -->
@@ -425,6 +460,7 @@
 </body>
 
 </html>
+
 
 
 
