@@ -195,27 +195,90 @@
   </section>
 
  
+<!-- Depoimentos / Resultados que inspiram -->
+<section id="testimonials" class="py-20 section-alt">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-8">Resultados que inspiram</h2>
 
-  <!-- DEPOIMENTOS -->
-  <section id="testimonials" class="py-14">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-10">Resultados que inspiram</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <blockquote class="card p-6 rounded-2xl">
-          <p class="italic">“Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”</p>
-          <cite class="block mt-4 text-sm soft">Carlos P. • Estudante</cite>
-        </blockquote>
-        <blockquote class="card p-6 rounded-2xl">
-          <p class="italic">“Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”</p>
-          <cite class="block mt-4 text-sm soft">Fernanda L. • Designer</cite>
-        </blockquote>
-        <blockquote class="card p-6 rounded-2xl">
-          <p class="italic">“Simples e aplicável. Em 1 mês eu tava outro.”</p>
-          <cite class="block mt-4 text-sm soft">Rafael S. • Empreendedor</cite>
+    <!-- Wrapper -->
+    <div class="relative max-w-4xl mx-auto">
+
+      <!-- Slides (mantenha 1 blockquote por .testimonial-slide) -->
+      <div class="testimonial-slide active">
+        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
+          <p class="italic mb-3">“Em 14 dias eu já tinha rotina de treino, leitura e planejamento. O 21º dia consolidou tudo.”</p>
+          <cite class="text-gray-700 font-medium">Carlos P. • Estudante</cite>
         </blockquote>
       </div>
+
+      <div class="testimonial-slide">
+        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
+          <p class="italic mb-3">“Finalmente parei de pular de hábito em hábito. A sequência semanal me deu direção.”</p>
+          <cite class="text-gray-700 font-medium">Fernanda L. • Designer</cite>
+        </blockquote>
+      </div>
+
+      <div class="testimonial-slide">
+        <blockquote class="bg-white p-6 rounded-xl shadow text-left md:text-center">
+          <p class="italic mb-3">“Simples e aplicável. Em 1 mês eu tava outro.”</p>
+          <cite class="text-gray-700 font-medium">Rafael S. • Empreendedor</cite>
+        </blockquote>
+      </div>
+
+      <!-- Botões -->
+      <button id="t-prev"
+        class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition">
+        &#10094;
+      </button>
+      <button id="t-next"
+        class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black/70 transition">
+        &#10095;
+      </button>
     </div>
-  </section>
+
+    <!-- Dots -->
+    <div id="t-dots" class="flex justify-center mt-5 space-x-2">
+      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+      <span class="testimonial-dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('#testimonials .testimonial-slide'));
+    const dots = Array.from(document.querySelectorAll('#t-dots .testimonial-dot'));
+    const prev = document.getElementById('t-prev');
+    const next = document.getElementById('t-next');
+    const wrapper = document.querySelector('#testimonials .relative');
+    let i = 0, timer;
+
+    function show(index) {
+      i = (index + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      dots.forEach((d, k) => {
+        d.classList.toggle('active', k === i);
+        d.classList.toggle('bg-yellow-500', k === i);
+        d.classList.toggle('bg-gray-400', k !== i);
+      });
+    }
+
+    function nextSlide() { show(i + 1); }
+    function prevSlide() { show(i - 1); }
+    function auto() { timer = setInterval(nextSlide, 5000); }
+
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+    dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
+
+    wrapper.addEventListener('mouseenter', () => clearInterval(timer));
+    wrapper.addEventListener('mouseleave', () => auto());
+
+    show(0);
+    auto();
+  })();
+</script>
 
   <!-- PRICING -->
   <section id="pricing" class="py-10">
@@ -334,6 +397,7 @@
 </body>
 
 </html>
+
 
 
 
